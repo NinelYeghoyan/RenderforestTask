@@ -1,0 +1,657 @@
+$greenHoverColor: #2ecb70;
+$menuColor: #646c77;
+$dropDownMenuColor: #00cc7b;
+$fontSize: 20px;
+$whiteColor: #ffffff;
+$greyColor: #cccccc;
+$textAlign: center;
+$positionAbsolute: absolute;
+$positionRelative: relative;
+$borderRadius: 100%;
+$dashedBorderRadius: 100px;
+$width: 100%;
+$height: 100%;
+$circleWidth: 82px;
+$circleHeight: 82px;
+
+@mixin tablet{
+  @media only screen and (min-width: 992px) and (max-width: 1200px){
+    @content;
+  }
+}
+
+@mixin phone{
+  @media screen and (max-width: 991px){
+    @content;
+  }
+}
+
+img {
+  max-width: 100%; }
+
+p {
+  color: #7e8081; }
+
+svg {
+  height: 23px; }
+
+//----------------- mobile navigation----------------
+
+.mobile-nav{
+  display: none;
+  a{
+    border-bottom: 1px solid #cccccc;
+  }
+  li:first-child > a:focus{
+    background: none;
+  }
+
+  @include phone{
+    display: block;
+  }
+
+}
+
+.navbar-icon {
+  font-size: 30px;
+  cursor: pointer;
+  color: #000;
+
+  &:hover{
+    color: #00cc7b;
+  }
+}
+
+.sidenav {
+  height: $height;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  background-color: $whiteColor;
+  overflow-x: hidden;
+  transition: 0.5s;
+
+  a {
+    padding: 10px 10px 10px 20px;
+    text-decoration: none;
+    font-size: 14px;
+    color: $menuColor;
+    display: block;
+    transition: 0.3s;
+
+    &:focus {
+      background-color: $dropDownMenuColor;
+    }
+  }
+}
+
+// ----------------------Navigation-----------------
+
+.tablet-nav{
+  @include phone{
+    display: none;
+  }
+}
+
+
+.navbar-light{
+  .navbar-nav {
+    .nav-link {
+      color: $menuColor;
+    }
+  }
+}
+
+.navbar-light {
+  .navbar-nav{
+    .nav-link{
+      &:hover{
+        color: $greenHoverColor;
+      }
+    }
+  }
+}
+
+.dropdown-item{
+
+  padding: 10px;
+
+  &:focus{
+    background-color: $dropDownMenuColor;
+  }
+  &:hover{
+    background-color: $dropDownMenuColor;
+  }
+}
+
+// -----------------------banner-------------------
+
+.banner{
+  background:  #2ECB70 url(../img/banner_1.png) no-repeat center center;
+  background-size: cover;
+  color: $whiteColor;
+  text-align: $textAlign;
+  padding: 60px 0;
+
+  p{
+    font-size: $fontSize;
+  }
+}
+
+//------------------banner button animation-----------
+
+.button{
+  background: none;
+  border: 0;
+  box-sizing: border-box;
+  position: $positionRelative;
+  cursor: pointer;
+
+  &:before{
+    box-sizing: inherit;
+    content: '';
+    position: $positionAbsolute;
+    width: $width;
+    height: $height;
+  }
+
+  &:after{
+    box-sizing: inherit;
+    content: '';
+    position: $positionAbsolute;
+    width: $width;
+    height: $height;
+  }
+}
+
+.spin{
+  width: $circleWidth;
+  height: $circleHeight;
+  padding: 0;
+
+  &::before{
+    top: 0;
+    left: 0;
+    border: 2px solid transparent;
+  }
+
+  &::after{
+    top: 0;
+    left: 0;
+    border: 0 solid transparent;
+  }
+
+  &:hover::before{
+    border-top-color: $whiteColor;
+    border-right-color: $whiteColor;
+    border-bottom-color: $whiteColor;
+    transition: border-top-color 0.15s linear, border-right-color 0.15s linear 0.10s, border-bottom-color 0.15s linear 0.20s;
+  }
+
+  &:hover::after{
+    border-top: 2px solid $whiteColor;
+    border-left-width: 2px;
+    border-right-width: 2px;
+    transform: rotate(270deg);
+    transition: transform 0.4s linear 0s, border-left-width 0s linear 0.35s;
+  }
+}
+
+.circle {
+  border-radius: $borderRadius;
+  box-shadow: none;
+
+  &::before{
+    border-radius: $borderRadius;
+  }
+
+  &::after{
+    border-radius: $borderRadius;
+  }
+}
+
+.svg_1 {
+  width: $circleWidth;
+  height: $circleHeight;
+  border-radius: $borderRadius;
+  background-color: rgba(255, 255, 255, .2);
+}
+
+//------------------ dashed section---------------
+
+.content-section{
+  margin: 80px 0;
+}
+
+.dashed-position{
+  position: $positionRelative;
+  width: $width;
+  box-sizing: border-box;
+}
+
+.dashed-position{
+  &:last-child >.right-dash-border{
+    border-bottom: none;
+  }
+}
+
+.displayNone{
+  @include phone{
+    display: none!important;
+  }
+}
+
+// ---------------- right dashed section--------------
+
+.right-dash-start-top{
+  position: $positionRelative;
+  top: -14px;
+  right: 8px;
+
+  @include phone{
+    position: inherit;
+    top: 0;
+    right: 0;
+  }
+}
+
+.number-box{
+  width: 30px;
+  height: 30px;
+  border: 1px solid $greyColor;
+  border-radius: $borderRadius;
+  color: $greyColor;
+}
+
+.right-dash-border{
+  width: 450px;
+  border-bottom: 2px dashed $greyColor;
+  border-right: 2px dashed $greyColor;
+  border-top: 2px dashed $greyColor;
+  border-bottom-right-radius: $dashedBorderRadius;
+  border-top-right-radius: $dashedBorderRadius;
+
+  @include tablet{
+    width: 346px;
+  }
+  @include phone{
+    display: none;
+  }
+
+}
+
+.left-dash-position{
+  position: $positionAbsolute;
+  top: -2px;
+  right: 40px;
+  height: $height;
+
+  @include tablet{
+    right: 40px;
+  }
+}
+
+.right-dash-top-content-position{
+  position: $positionRelative;
+  top: -20px;
+  right: -20px;
+  height: $height;
+
+  @include tablet{
+    padding-left: 30px;
+  }
+
+  @include phone{
+    position: inherit;
+    top: 0;
+    right: 0;
+    background: none;
+  }
+}
+
+.svg_2{
+  width: 150px;
+  height: 150px;
+  border: 1px solid $greyColor;
+  border-radius: $borderRadius;
+}
+
+.svg_item{
+  width: $circleWidth;
+  height: $circleHeight;
+}
+
+.left-dash-content, .right-dash-content{
+  width: 760px;
+  margin-left: 120px;
+  padding-right: 40px;
+
+  @include tablet{
+    width: 650px;
+    margin-left: 20px;
+    padding-right: 0;
+  }
+
+  @include phone{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+//-----------------left dashed section----------------
+
+.left-dash-border{
+  width: 550px;
+  border-bottom: 2px dashed $greyColor;
+  border-top: 2px dashed $greyColor;
+  border-left: 2px dashed $greyColor;
+  border-bottom-left-radius: $dashedBorderRadius;
+  border-top-left-radius: $dashedBorderRadius;
+
+  @include tablet{
+    width: 475px;
+  }
+
+  @include phone{
+    display: none;
+  }
+}
+
+.right-dash-position{
+  position: $positionAbsolute;
+  left: 65px;
+  height: $height;
+}
+
+.left-dash-content-position{
+  position: $positionRelative;
+  left: 0;
+  height: $height;
+  padding: 15px 0;
+
+  @include tablet{
+    left: -30px;
+  }
+}
+
+.left-dash-start{
+  position: $positionAbsolute;
+  left: 220px;
+  bottom: -19px;
+  background-color: $whiteColor;
+
+  @include phone{
+    position: inherit;
+    bottom: 0;
+    left: 0;
+    background: none;
+  }
+}
+
+.right-dash-content-position{
+  height: $height;
+  padding: 15px 0 15px 20px;
+
+  @include tablet{
+    padding: 15px 0 15px 50px;
+  }
+
+  @include phone{
+    padding:0;
+  }
+}
+
+.right-dash-start{
+  position: $positionAbsolute;
+  right: 190px;
+  bottom: -15px;
+  background-color: $whiteColor;
+
+  @include phone{
+    position: inherit;
+    bottom: 0;
+    right: 0;
+    background: none;
+  }
+}
+
+//--------------------gradient section---------------
+
+.gradient-section{
+  background: linear-gradient(to right,#2ecb70 8%,#21ba59 33%,#081e2b 100%);
+  color: $whiteColor;
+  text-align: $textAlign;
+  padding: 60px 0;
+
+  h2{
+    padding-bottom: 30px;
+  }
+
+  p{
+    font-size: $fontSize;
+    margin: 0;
+    padding: 5px 0;
+  }
+}
+
+//-------------------clients section--------------
+
+.clients{
+  border-bottom: 1px solid $greyColor;
+  margin-bottom: 6em;
+
+  h5{
+    color: $greyColor;
+  }
+
+  @include phone{
+    border-bottom: none;
+    margin-bottom: 3em;
+  }
+}
+
+//------------------marketing section-------------
+
+.marketing-header{
+  color: #666;
+  font-size: 22px;
+}
+
+.hover-box {
+  position: $positionRelative;
+  display: inline-block;
+  overflow: hidden;
+  max-width: 100%;
+  height: auto;
+
+  .hvrbox-layer_bottom {
+    display: block;
+    height: 230px;
+  }
+
+  .hvrbox-layer_top {
+    position: $positionAbsolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: $width;
+    height: $height;
+    background-color: rgba(56,189,108,.9);
+    color: $whiteColor;
+    opacity: 0;
+    -moz-transition: all 0.4s ease-in-out 0s;
+    -webkit-transition: all 0.4s ease-in-out 0s;
+    transition: all 0.4s ease-in-out 0s;
+  }
+
+  &:hover .hvrbox-layer_top{
+    opacity: 1;
+  }
+
+  &.active .hvrbox-layer_top {
+    opacity: 1;
+  }
+}
+
+.hvrbox-text {
+  text-align: $textAlign;
+  font-size: 17px;
+  text-transform: uppercase;
+  font-weight: 700;
+  display: inline-block;
+  width: 340px;
+  position:$positionAbsolute;
+  top: 50%;
+  left: 50%;
+  -moz-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+
+  @include phone{
+    width: 300px;
+  }
+}
+
+.btn-primary{
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 12px;
+  background-color: transparent;
+  border-color: $whiteColor;
+  color: $whiteColor;
+  cursor:pointer;
+
+  &:hover{
+    background-color: $whiteColor;
+    color: #2ecb70;
+    border-color: $whiteColor;
+  }
+}
+
+.btn-default{
+  text-transform: uppercase;
+  color: $whiteColor;
+  font-weight: 700;
+  font-size: 14px;
+  background-color: #2ecb70;
+  border: 1px solid #2ecb70;
+  padding: 12px 38px;
+  cursor: pointer;
+
+  &:hover{
+    background-color: #29b665;
+  }
+}
+
+//----------------------business section--------------
+
+.top-border{
+  border-top: 1px solid $greyColor;
+  margin: 7em 0 50px 0;
+}
+
+.card{
+  border: 0;
+  border-radius: 0;
+  p{
+    font-weight: 400;
+    color: #7e8081;
+    font-size: 14px;
+  }
+}
+
+.business-img{
+  width: 200px;
+  padding-bottom: 20px;
+}
+
+.card-title{
+  font-size: 20px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #666;
+}
+
+.price{
+  color: #2ECB70;
+  padding: 15px 0;
+}
+
+.sfx-border{
+  border-top: 1px solid $greyColor;
+  border-bottom: 1px solid $greyColor;
+  margin: 0 70px;
+}
+
+.card-border{
+  border-left: 1px solid $greyColor;
+  border-right: 1px solid $greyColor;
+  @include phone{
+    border: none;
+    margin: 30px 0;
+  }
+}
+
+.margin-top{
+  margin-top: 10em;
+}
+
+.input-group .form-control{
+  border:1px solid $greyColor;
+
+  &:not(:first-child){
+    border-radius: 4px;
+  }
+}
+
+//-------------------- footer section------------
+
+footer{
+  margin-bottom: 50px;
+}
+
+.footer-border{
+  border-top: 1px solid $greyColor;
+  border-bottom: 1px solid $greyColor;
+  padding: 15px 0;
+  margin: 40px 0 20px 0;
+}
+
+.green-ftr-nav__link{
+  color: #2ecb70;
+
+  &:hover{
+    color: #2ecb70;
+    text-decoration: underline;
+  }
+}
+
+.grey-ftr-nav__link {
+  color: #7B818D;
+  font-size: 14px;
+
+  &:hover {
+    color: #7B818D;
+    text-decoration: underline;
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
